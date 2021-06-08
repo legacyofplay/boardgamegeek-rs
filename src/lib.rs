@@ -1,6 +1,8 @@
 mod client;
 mod collection;
+mod protocol;
 mod result;
+mod scraping;
 mod thing;
 mod xml;
 

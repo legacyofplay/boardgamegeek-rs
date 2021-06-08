@@ -40,3 +40,25 @@ fn get_random_boardgame_id() -> boardgamegeek::Result<()> {
 
   Ok(())
 }
+
+#[test]
+fn get_top_expansions() -> boardgamegeek::Result<()> {
+  let client = boardgamegeek::Client::new();
+
+  let ids = tokio_test::block_on(client.get_top_expansions(0))?;
+
+  assert!(ids.len() > 0);
+
+  Ok(())
+}
+
+#[test]
+fn get_top_games() -> boardgamegeek::Result<()> {
+  let client = boardgamegeek::Client::new();
+
+  let ids = tokio_test::block_on(client.get_top_games(0))?;
+
+  assert!(ids.len() > 0);
+
+  Ok(())
+}

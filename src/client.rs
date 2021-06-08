@@ -66,4 +66,28 @@ impl Client {
       Err(_err) => Err(Error::InvalidXML),
     }
   }
+
+  pub async fn get_top_expansions(&self, page: i32) -> Result<Vec<String>> {
+    let result = self
+      .base_client
+      .get(
+        format!(
+          "https://boardgamegeek.com/browse/boardgameexpansion/page/{}",
+          page
+        )
+        .as_str(),
+      )
+      .await?;
+
+    Ok(scraping::parse_expansion_ids_from_page(result))
+  }
+
+  pub async fn get_top_games(&self, page: i32) -> Result<Vec<String>> {
+    let result = self
+      .base_client
+      .get(format!("https://boardgamegeek.com/browse/boardgame/page/{}", page).as_str())
+      .await?;
+
+    Ok(scraping::parse_game_ids_from_page(result))
+  }
 }

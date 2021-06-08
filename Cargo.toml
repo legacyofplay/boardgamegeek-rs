@@ -1,0 +1,17 @@
+[package]
+name = "boardgamegeek"
+version = "1.0.0"
+authors = ["Michael Schoonmaker <hello@schoonology.com>"]
+edition = "2018"
+
+[dependencies]
+atoi = "0.4.0"
+backoff = { version = "0.3.0", features = ["tokio"] }
+log = "0.4.14"
+regex = "1.4.5"
+reqwest = { version = "0.11.2", features = ["native-tls"] }
+thiserror = "1.0"
+xml-rs = "0.8.3"
+
+[dev-dependencies]
+tokio-test = "0.4.2"

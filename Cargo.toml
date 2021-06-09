@@ -1,6 +1,7 @@
 [package]
 name = "boardgamegeek"
 version = "1.0.0"
+description = "A non-comprehensive client to the BoardGameGeek website and API."
 authors = ["Michael Schoonmaker <hello@schoonology.com>"]
 edition = "2018"
 license = "MPL-2.0"

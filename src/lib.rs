@@ -7,8 +7,8 @@ mod thing;
 mod xml;
 
 pub use {
-  client::Client,
-  collection::{Collection, CollectionType},
-  result::Result,
-  thing::{Link, Thing},
+    client::Client,
+    collection::{Collection, CollectionType},
+    result::Result,
+    thing::{Link, Thing},
 };

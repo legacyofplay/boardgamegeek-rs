@@ -10,5 +10,5 @@ pub use {
   client::Client,
   collection::{Collection, CollectionType},
   result::Result,
-  thing::Thing,
+  thing::{Link, Thing},
 };

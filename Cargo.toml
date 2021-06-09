@@ -3,6 +3,7 @@ name = "boardgamegeek"
 version = "1.0.0"
 authors = ["Michael Schoonmaker <hello@schoonology.com>"]
 edition = "2018"
+license = "MPL-2.0"
 
 [dependencies]
 atoi = "0.4.0"

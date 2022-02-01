@@ -8,6 +8,7 @@ const LOG_TARGET: &str = "boardgamegeek::Client";
 // This "base" Client exists to handle the random idiosyncracies of BGG.
 pub struct Client {
     http_client: reqwest::Client,
+    no_redirect_client: reqwest::Client,
 }
 
 async fn collect(response: reqwest::Response) -> Result<String> {
@@ -20,7 +21,8 @@ async fn collect(response: reqwest::Response) -> Result<String> {
 impl Client {
     pub fn new() -> Self {
         Self {
-            http_client: reqwest::Client::builder()
+            http_client: reqwest::Client::builder().build().unwrap(),
+            no_redirect_client: reqwest::Client::builder()
                 .redirect(reqwest::redirect::Policy::none())
                 .build()
                 .unwrap(),
@@ -51,7 +53,7 @@ impl Client {
     }
 
     pub async fn get_redirect_location(&self, url: &str) -> Result<Option<String>> {
-        let result = self.http_client.get(url).send().await;
+        let result = self.no_redirect_client.get(url).send().await;
 
         if let Err(_err) = result {
             return Err(Error::ConnectionFailed);

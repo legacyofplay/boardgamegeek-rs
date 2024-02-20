@@ -33,3 +33,10 @@ pub fn f32_for_attr(attributes: &Vec<xml::attribute::OwnedAttribute>, name: &str
         None
     }
 }
+
+pub fn num_for_chars<I>(chars: String) -> Option<I>
+where
+    I: atoi::FromRadix10SignedChecked,
+{
+    atoi::atoi(chars.as_bytes())
+}

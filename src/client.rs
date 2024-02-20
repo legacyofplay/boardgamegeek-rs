@@ -1,4 +1,5 @@
 use crate::collection::{Collection, CollectionParser, CollectionType};
+use crate::parsers::boardgame::{BoardGame, BoardGameParser};
 use crate::protocol;
 use crate::result::{Error, Result};
 use crate::scraping;
@@ -15,6 +16,21 @@ impl Client {
         }
     }
 
+    pub async fn get_boardgame(&self, id: &str) -> Result<BoardGame> {
+        let result = self
+            .base_client
+            .get(format!("https://api.geekdo.com/xmlapi/boardgame/{}", id).as_str())
+            .await?;
+
+        match BoardGameParser::new().parse(result.as_bytes()) {
+            Ok(boardgame) => Ok(boardgame),
+            Err(_err) => Err(Error::InvalidXML),
+        }
+    }
+
+    /**
+     * Legacy API: may or may not work
+     */
     pub async fn get_collection(
         &self,
         username: &str,
@@ -49,6 +65,7 @@ impl Client {
         }
     }
 
+    #[deprecated]
     pub async fn get_thing(&self, id: &str) -> Result<Thing> {
         let result = self
             .base_client

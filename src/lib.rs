@@ -1,5 +1,8 @@
 mod client;
 mod collection;
+mod parsers {
+    pub mod boardgame;
+}
 mod protocol;
 mod result;
 mod scraping;
